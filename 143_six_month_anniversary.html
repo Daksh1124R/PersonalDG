@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>143 ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      background: radial-gradient(circle at top, #4b1731, #190914 65%, #090509);
+      color: white;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      animation: float 7s linear infinite;
+      opacity: .75;
+      font-size: 22px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: .75; }
+      100% { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+    }
+
+    .card {
+      width: min(92%, 460px);
+      padding: 42px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      background: rgba(255,255,255,.09);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 70px rgba(0,0,0,.45);
+      position: relative;
+      z-index: 2;
+    }
+
+    .months {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 9vw, 52px);
+      line-height: 1.1;
+    }
+
+    .question {
+      font-size: 22px;
+      margin: 0 0 30px;
+    }
+
+    .code {
+      display: inline-block;
+      margin-bottom: 28px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: rgba(0,0,0,.3);
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      color: #ffd7e5;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 27px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    #yes {
+      background: #fff;
+      color: #8e204e;
+      box-shadow: 0 8px 25px rgba(255,255,255,.18);
+    }
+
+    #no {
+      background: rgba(255,255,255,.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    button:hover { transform: translateY(-3px) scale(1.03); }
+
+    .message {
+      display: none;
+      margin-top: 28px;
+      font-size: 21px;
+      line-height: 1.55;
+      animation: appear .7s ease;
+    }
+
+    .message strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .signature {
+      margin-top: 25px;
+      font-size: 13px;
+      opacity: .55;
+      font-family: Arial, sans-serif;
+    }
+
+    .celebrate {
+      animation: pulse .7s ease 2;
+    }
+
+    @keyframes pulse {
+      50% { transform: scale(1.035); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <main class="card" id="card">
+    <div class="months">Six months together ❤️</div>
+
+    <h1>Will you be my 143?</h1>
+
+    <div class="code">if answer == "Yes": ❤️</div>
+
+    <p class="question">Choose carefully, my love...</p>
+
+    <div class="buttons">
+      <button id="yes">Yes ❤️</button>
+      <button id="no">No 😠</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="signature">Made with Python logic & a little too much love.</div>
+  </main>
+
+  <script>
+    const yes = document.getElementById("yes");
+    const no = document.getElementById("no");
+    const message = document.getElementById("message");
+    const card = document.getElementById("card");
+
+    yes.addEventListener("click", () => {
+      message.style.display = "block";
+      message.innerHTML = `
+        <strong>Yay! ❤️</strong>
+        I love you so much.<br>
+        Happy 6 months, my love. 🥹❤️<br><br>
+        <small>Here's to all the months still waiting for us.</small>
+      `;
+      card.classList.add("celebrate");
+      yes.style.display = "none";
+      no.style.display = "none";
+      celebrate();
+    });
+
+    no.addEventListener("click", () => {
+      message.style.display = "block";
+      message.innerHTML = `
+        <strong>You're mine 😠❤️</strong>
+        You really thought there was a "No" option? 😂<br><br>
+        Try again, sweetheart.
+      `;
+      no.style.transform = "translateX(8px)";
+    });
+
+    function celebrate() {
+      for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+          const h = document.createElement("div");
+          h.textContent = ["❤️", "💕", "💗", "💖"][Math.floor(Math.random() * 4)];
+          h.style.position = "fixed";
+          h.style.left = Math.random() * 100 + "vw";
+          h.style.top = "105vh";
+          h.style.fontSize = (18 + Math.random() * 24) + "px";
+          h.style.zIndex = 10;
+          h.style.transition = "transform 3s ease, opacity 3s ease";
+          document.body.appendChild(h);
+
+          requestAnimationFrame(() => {
+            h.style.transform = `translateY(-120vh) rotate(${Math.random()*80-40}deg)`;
+            h.style.opacity = "0";
+          });
+
+          setTimeout(() => h.remove(), 3200);
+        }, i * 60);
+      }
+    }
+
+    // Floating background hearts
+    for (let i = 0; i < 18; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "♥";
+      h.style.left = Math.random() * 100 + "%";
+      h.style.animationDelay = Math.random() * 7 + "s";
+      h.style.animationDuration = (5 + Math.random() * 5) + "s";
+      h.style.fontSize = (12 + Math.random() * 18) + "px";
+      document.getElementById("hearts").appendChild(h);
+    }
+  </script>
+
+</body>
+</html>
